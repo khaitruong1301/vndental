@@ -1,6 +1,10 @@
 import type { NextConfig } from 'next';
 
-const backendUrl = process.env.BACKEND_URL ?? 'http://localhost:4000';
+// Host của backend (Express): production mặc định là project Vercel bevndental, ghi đè bằng BACKEND_URL
+const PRODUCTION_BACKEND_URL = 'https://bevndental.vercel.app';
+const backendUrl =
+  process.env.BACKEND_URL ??
+  (process.env.NODE_ENV === 'production' ? PRODUCTION_BACKEND_URL : 'http://localhost:4000');
 
 const nextConfig: NextConfig = {
   // Thư mục gốc có package-lock riêng (concurrently) — chỉ định rõ để Next không đoán sai

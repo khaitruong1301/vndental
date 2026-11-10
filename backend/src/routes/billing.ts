@@ -1,10 +1,10 @@
 // Thanh toán: TT-01 … TT-08 (lập hóa đơn, giảm giá, thu tiền, công nợ, chốt két, hủy hóa đơn)
 import { Router } from 'express';
 import { z } from 'zod';
-import { currentUser, requirePerm } from '../auth';
-import { query, queryOne, withTx } from '../db';
-import { badRequest, notFound } from '../errors';
-import { dateStr, idParam, optionalText, shift } from '../validate';
+import { currentUser, requirePerm } from '../auth.js';
+import { query, queryOne, withTx } from '../db.js';
+import { badRequest, notFound } from '../errors.js';
+import { dateStr, idParam, optionalText, shift } from '../validate.js';
 
 const router = Router();
 

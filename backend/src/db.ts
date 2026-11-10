@@ -1,5 +1,5 @@
 import pg from 'pg';
-import { config } from './config';
+import { config } from './config.js';
 
 // date → 'YYYY-MM-DD' (tránh lệch múi giờ), numeric/bigint → number
 pg.types.setTypeParser(1082, (v) => v);

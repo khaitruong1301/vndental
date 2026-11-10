@@ -127,6 +127,19 @@ npm run dev                          # API :4000 + web :3000 → http://localhos
 - Chạy API trỏ DB online: `npm --prefix backend run start:prod`. Frontend trỏ API qua `BACKEND_URL`.
 - File bệnh nhân lưu ở `UPLOAD_DIR` (mặc định `backend/uploads`) — host miễn phí thường xóa ổ đĩa khi khởi động lại, cần ổ bền vững hoặc object storage.
 
+**Production trên Vercel** (region `sin1` cạnh Neon Singapore, khai báo trong `backend/vercel.json`, `frontend/vercel.json`)
+
+| Project Vercel | Thư mục | Domain | Biến môi trường |
+|---|---|---|---|
+| `bevndental` | `backend/` | https://bevndental.vercel.app | `DATABASE_URL`, `JWT_SECRET`, `NODE_ENV=production`, `DB_POOL_MAX=3` |
+| `vndental` | `frontend/` | https://vndental.vercel.app | `BACKEND_URL=https://bevndental.vercel.app` (mặc định production trong `next.config.ts`) |
+
+- Deploy: `cd backend && vercel deploy --prod`, `cd frontend && vercel deploy --prod` (đã `vercel link`, `.vercel/` không commit).
+- Backend chạy Express zero-config: Vercel lấy `src/app.ts` làm entrypoint (default export app); `src/index.ts` chỉ `listen` khi không có biến `VERCEL`.
+- Import tương đối trong backend **phải có đuôi `.js`** (`./db.js`) — Vercel biên dịch từng file sang ESM, Node ESM không tự thêm đuôi.
+- Trình duyệt chỉ gọi `vndental.vercel.app/api/*`; Next.js rewrite sang backend → cookie đăng nhập cùng origin.
+- Giới hạn Vercel: body request tối đa 4,5 MB (upload file bệnh nhân lớn hơn sẽ lỗi); file upload ghi vào `/tmp` và mất khi function khởi động lại → cần object storage (Vercel Blob, S3...) nếu dùng thật.
+
 ## 6. Kiểm thử
 
 - Mỗi module được kiểm thử API bằng curl trên `ClinicCybersoftDB_test` (kể cả trường hợp bị chặn và phân quyền).

@@ -1,6 +1,6 @@
 // Danh mục dùng chung cho mọi màn hình (dropdown bác sĩ, ghế, dịch vụ, thuốc, lý do hủy...)
 import { Router } from 'express';
-import { query } from '../db';
+import { query } from '../db.js';
 
 const router = Router();
 

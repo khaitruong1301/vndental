@@ -1,11 +1,11 @@
 // Lịch hẹn: LH-01 … LH-09 (lịch & khung trống, đặt/đổi/hủy, nhắc lịch, tiếp đón, vãng lai)
 import { Router } from 'express';
 import { z } from 'zod';
-import { currentUser, requirePerm } from '../auth';
-import { type Queryable, query, queryOne, withTx } from '../db';
-import { badRequest, conflict, HttpError, notFound } from '../errors';
-import { messageGateway } from '../services/smsGateway';
-import { dateStr, optionalText, timeStr } from '../validate';
+import { currentUser, requirePerm } from '../auth.js';
+import { type Queryable, query, queryOne, withTx } from '../db.js';
+import { badRequest, conflict, HttpError, notFound } from '../errors.js';
+import { messageGateway } from '../services/smsGateway.js';
+import { dateStr, optionalText, timeStr } from '../validate.js';
 
 const router = Router();
 

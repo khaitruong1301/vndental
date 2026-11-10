@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { config } from './config';
-import { query, queryOne } from './db';
-import { forbidden, HttpError } from './errors';
+import { config } from './config.js';
+import { query, queryOne } from './db.js';
+import { forbidden, HttpError } from './errors.js';
 
 export interface AuthUser {
   id: number;

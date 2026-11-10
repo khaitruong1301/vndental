@@ -56,7 +56,8 @@ export const config = {
   port: Number(process.env.PORT ?? process.env.API_PORT ?? 4000),
   jwtSecret: jwtSecret(),
   clinicTz: 'Asia/Ho_Chi_Minh',
-  uploadDir: process.env.UPLOAD_DIR ?? path.join(rootDir, 'backend', 'uploads'),
+  // Vercel chỉ cho ghi vào /tmp (tạm thời, mất khi function khởi động lại)
+  uploadDir: process.env.UPLOAD_DIR ?? (process.env.VERCEL ? '/tmp/uploads' : path.join(rootDir, 'backend', 'uploads')),
   db: { ...db.pool, max: Number(process.env.DB_POOL_MAX ?? 10) } satisfies PoolConfig,
   dbName: db.name,
 };

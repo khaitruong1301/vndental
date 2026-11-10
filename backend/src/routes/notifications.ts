@@ -1,9 +1,9 @@
 // Thông báo trong hệ thống (DT-07: cảnh báo vật tư dưới ngưỡng gửi Quản lý)
 import { Router } from 'express';
-import { currentUser, hasPerm } from '../auth';
-import { query, queryOne } from '../db';
-import { notFound } from '../errors';
-import { idParam } from '../validate';
+import { currentUser, hasPerm } from '../auth.js';
+import { query, queryOne } from '../db.js';
+import { notFound } from '../errors.js';
+import { idParam } from '../validate.js';
 
 const router = Router();
 

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { badRequest } from './errors';
+import { badRequest } from './errors.js';
 
 export const dateStr = z
   .string()

@@ -2,10 +2,10 @@
 import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
-import { currentUser, requirePerm } from '../auth';
-import { type Queryable, query, queryOne, withTx } from '../db';
-import { badRequest, conflict, forbidden, notFound } from '../errors';
-import { dateStr, idParam, optionalText, shift, timeStr } from '../validate';
+import { currentUser, requirePerm } from '../auth.js';
+import { type Queryable, query, queryOne, withTx } from '../db.js';
+import { badRequest, conflict, forbidden, notFound } from '../errors.js';
+import { dateStr, idParam, optionalText, shift, timeStr } from '../validate.js';
 
 const router = Router();
 

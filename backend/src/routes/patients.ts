@@ -4,11 +4,11 @@ import path from 'node:path';
 import { type NextFunction, type Request, type Response, Router } from 'express';
 import multer from 'multer';
 import { z } from 'zod';
-import { currentUser, hasPerm, requirePerm } from '../auth';
-import { config } from '../config';
-import { query, queryOne, type Queryable, withTx } from '../db';
-import { badRequest, forbidden, HttpError, notFound } from '../errors';
-import { dateStr, idParam, optionalText } from '../validate';
+import { currentUser, hasPerm, requirePerm } from '../auth.js';
+import { config } from '../config.js';
+import { query, queryOne, type Queryable, withTx } from '../db.js';
+import { badRequest, forbidden, HttpError, notFound } from '../errors.js';
+import { dateStr, idParam, optionalText } from '../validate.js';
 
 const router = Router();
 

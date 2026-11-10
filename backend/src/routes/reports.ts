@@ -1,8 +1,8 @@
 // Báo cáo: BC-01 … BC-08 (dựa trên các view rpt_* trong database/03_views.sql)
 import { Router } from 'express';
 import { z } from 'zod';
-import { requirePerm } from '../auth';
-import { query, queryOne } from '../db';
+import { requirePerm } from '../auth.js';
+import { query, queryOne } from '../db.js';
 
 const router = Router();
 

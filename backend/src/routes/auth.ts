@@ -2,9 +2,9 @@
 import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
-import { clearAuthCookie, currentUser, loadStaffAuth, requireAuth, setAuthCookie, signToken } from '../auth';
-import { query, queryOne, withTx } from '../db';
-import { badRequest, HttpError } from '../errors';
+import { clearAuthCookie, currentUser, loadStaffAuth, requireAuth, setAuthCookie, signToken } from '../auth.js';
+import { query, queryOne, withTx } from '../db.js';
+import { badRequest, HttpError } from '../errors.js';
 
 const router = Router();
 

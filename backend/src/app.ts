@@ -1,18 +1,18 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import { requireAuth, requirePasswordChanged } from './auth';
-import { errorHandler } from './errors';
-import adminRouter from './routes/admin';
-import appointmentsRouter from './routes/appointments';
-import authRouter from './routes/auth';
-import billingRouter from './routes/billing';
-import dashboardRouter from './routes/dashboard';
-import lookupsRouter from './routes/lookups';
-import notificationsRouter from './routes/notifications';
-import patientsRouter from './routes/patients';
-import plansRouter from './routes/plans';
-import reportsRouter from './routes/reports';
-import treatmentsRouter from './routes/treatments';
+import { requireAuth, requirePasswordChanged } from './auth.js';
+import { errorHandler } from './errors.js';
+import adminRouter from './routes/admin.js';
+import appointmentsRouter from './routes/appointments.js';
+import authRouter from './routes/auth.js';
+import billingRouter from './routes/billing.js';
+import dashboardRouter from './routes/dashboard.js';
+import lookupsRouter from './routes/lookups.js';
+import notificationsRouter from './routes/notifications.js';
+import patientsRouter from './routes/patients.js';
+import plansRouter from './routes/plans.js';
+import reportsRouter from './routes/reports.js';
+import treatmentsRouter from './routes/treatments.js';
 
 export function createApp() {
   const app = express();
@@ -46,3 +46,7 @@ export function createApp() {
   app.use(errorHandler);
   return app;
 }
+
+// Vercel nhận src/app.ts làm entrypoint → default export là Express app (local: src/index.ts dùng lại)
+const app = createApp();
+export default app;

@@ -1,7 +1,7 @@
 // Trang tổng quan: số liệu trong ngày + lịch hôm nay
 import { Router } from 'express';
-import { currentUser, hasPerm } from '../auth';
-import { query, queryOne } from '../db';
+import { currentUser, hasPerm } from '../auth.js';
+import { query, queryOne } from '../db.js';
 
 const router = Router();
 

@@ -2,10 +2,10 @@
 import { Router } from 'express';
 import type { PoolClient } from 'pg';
 import { z } from 'zod';
-import { currentUser, hasPerm, requirePerm } from '../auth';
-import { query, queryOne, withTx } from '../db';
-import { badRequest, conflict, forbidden, notFound } from '../errors';
-import { dateStr, idParam, optionalText } from '../validate';
+import { currentUser, hasPerm, requirePerm } from '../auth.js';
+import { query, queryOne, withTx } from '../db.js';
+import { badRequest, conflict, forbidden, notFound } from '../errors.js';
+import { dateStr, idParam, optionalText } from '../validate.js';
 
 const router = Router();
 
