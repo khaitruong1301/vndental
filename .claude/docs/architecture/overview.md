@@ -117,7 +117,15 @@ npm run dev                          # API :4000 + web :3000 → http://localhos
 - Kiểm tra kiểu: `npm --prefix backend run typecheck`, `npm --prefix frontend run typecheck`; build: `npm --prefix frontend run build`.
 
 **Thay đổi DB**
-- Sửa `database/01_schema.sql` (để DB mới tạo đúng) **và** thêm file `database/migrations/<ngày>_<mô tả>.sql` (`CREATE OR REPLACE` / `ALTER ... IF NOT EXISTS`) rồi áp cho cả `ClinicCybersoftDB` và `ClinicCybersoftDB_test`.
+- Sửa `database/01_schema.sql` (để DB mới tạo đúng) **và** thêm file `database/migrations/<ngày>_<mô tả>.sql` (`CREATE OR REPLACE` / `ALTER ... IF NOT EXISTS`) rồi áp cho cả `ClinicCybersoftDB` và `ClinicCybersoftDB_test` (và DB production nếu đã triển khai).
+
+**Production (DB online — Neon)**
+- Backend đọc cấu hình theo thứ tự: biến môi trường của host > `.env.production` (khi `NODE_ENV=production`) > `.env`.
+- Production bắt buộc `DATABASE_URL` (connection string, ưu tiên hơn `CLINIC_DB_*`) và `JWT_SECRET` ≥ 32 ký tự; cookie `secure`, `trust proxy` bật; cổng lấy từ `PORT`.
+- Neon: dùng chuỗi **Direct connection** (pooler không nhận tham số khởi động `timezone`), `sslmode=verify-full`.
+- Đưa DB local lên: điền `DATABASE_URL` vào `.env.production` → `./database/deploy-remote.sh` (tạo DB ICU vi-VN + timezone, `pg_dump` → `psql` qua container Postgres; `--force` để xóa và nạp lại).
+- Chạy API trỏ DB online: `npm --prefix backend run start:prod`. Frontend trỏ API qua `BACKEND_URL`.
+- File bệnh nhân lưu ở `UPLOAD_DIR` (mặc định `backend/uploads`) — host miễn phí thường xóa ổ đĩa khi khởi động lại, cần ổ bền vững hoặc object storage.
 
 ## 6. Kiểm thử
 

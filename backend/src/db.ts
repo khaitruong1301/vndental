@@ -8,7 +8,7 @@ pg.types.setTypeParser(20, (v) => parseInt(v, 10));
 
 export const pool = new pg.Pool({
   ...config.db,
-  max: 10,
+  // Dùng connection string trực tiếp (không qua pooler) để tham số khởi động timezone có hiệu lực
   options: `-c timezone=${config.clinicTz}`,
 });
 

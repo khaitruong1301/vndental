@@ -5,7 +5,8 @@ import { pool } from './db';
 const app = createApp();
 
 const server = app.listen(config.port, () => {
-  console.log(`API phòng khám chạy tại http://localhost:${config.port} (DB: ${config.db.database})`);
+  const mode = config.isProduction ? 'production' : 'development';
+  console.log(`API phòng khám chạy tại cổng ${config.port} [${mode}] (DB: ${config.dbName})`);
 });
 
 function shutdown() {
