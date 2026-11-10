@@ -1,0 +1,38 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Nhân viên" as NV
+actor "Lễ tân" as LT
+actor "Bác sĩ" as BS
+actor "Quản lý" as QL
+actor "Bệnh nhân" as BN
+actor "Cổng SMS/Zalo" as SMS
+
+LT -up-|> NV
+BS -up-|> NV
+QL -up-|> NV
+QL --|> LT
+
+rectangle "Hệ thống quản lý Nha khoa Nụ Cười Việt" {
+  usecase "Đăng nhập" as UC00
+  usecase "Quản lý bệnh nhân" as P1
+  usecase "Quản lý lịch hẹn" as P2
+  usecase "Khám & điều trị" as P3
+  usecase "Thanh toán" as P4
+  usecase "Quản trị hệ thống" as P5
+  usecase "Xem báo cáo" as P6
+}
+
+NV --> UC00
+LT --> P1
+LT --> P2
+LT --> P4
+BS --> P1
+BS --> P2
+BS --> P3
+QL --> P5
+QL --> P6
+P2 --> SMS
+P2 --> BN
+@enduml

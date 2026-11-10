@@ -1,0 +1,29 @@
+@startuml
+left to right direction
+actor "Bác sĩ" as BS
+actor "Quản lý" as QL
+
+rectangle "Khám & Điều trị" {
+  usecase "DT-01 Xem danh sách chờ khám" as DT01
+  usecase "DT-02 Lập phiếu điều trị" as DT02
+  usecase "DT-03 Kê đơn thuốc" as DT03
+  usecase "DT-04 Gắn buổi vào liệu trình" as DT04
+  usecase "DT-05 Quản lý liệu trình" as DT05
+  usecase "DT-06 Trừ vật tư theo định mức" as DT06
+  usecase "DT-07 Cảnh báo vật tư dưới ngưỡng" as DT07
+  usecase "DT-08 Sửa phiếu điều trị" as DT08
+  usecase "DT-09 Ghi lịch sử chỉnh sửa" as DT09
+}
+
+BS --> DT01
+BS --> DT02
+BS --> DT05
+BS --> DT08
+DT07 --> QL
+
+DT03 ..> DT02 : <<extend>>\n(cần thuốc)
+DT04 ..> DT02 : <<extend>>\n(thuộc liệu trình)
+DT02 ..> DT06 : <<include>>
+DT07 ..> DT06 : <<extend>>\n(tồn < ngưỡng)
+DT08 ..> DT09 : <<include>>
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+actor "Lễ tân" as LT
+actor "Quản lý" as QL
+QL --|> LT
+
+rectangle "Thanh toán" {
+  usecase "TT-01 Lập hóa đơn" as TT01
+  usecase "TT-02 Áp giá hiện hành" as TT02
+  usecase "TT-03 Áp dụng giảm giá" as TT03
+  usecase "TT-04 Thu tiền" as TT04
+  usecase "TT-05 In hóa đơn / biên lai" as TT05
+  usecase "TT-06 Tra cứu công nợ" as TT06
+  usecase "TT-07 Chốt két cuối ca" as TT07
+  usecase "TT-08 Hủy / điều chỉnh hóa đơn" as TT08
+}
+
+LT --> TT01
+LT --> TT04
+LT --> TT06
+LT --> TT07
+QL --> TT08
+
+TT01 ..> TT02 : <<include>>
+TT03 ..> TT01 : <<extend>>\n(có giảm giá)
+TT05 ..> TT04 : <<extend>>
+@enduml

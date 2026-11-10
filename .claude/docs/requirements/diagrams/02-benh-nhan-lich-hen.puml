@@ -1,0 +1,54 @@
+@startuml
+left to right direction
+actor "Lễ tân" as LT
+actor "Bác sĩ" as BS
+actor "Cổng SMS/Zalo" as SMS
+actor "Bệnh nhân" as BN
+
+rectangle "Bệnh nhân & Lịch hẹn" {
+  usecase "BN-01 Tìm bệnh nhân" as BN01
+  usecase "BN-02 Đăng ký bệnh nhân mới" as BN02
+  usecase "BN-03 Gắn người giám hộ" as BN03
+  usecase "BN-04 Cập nhật thông tin BN" as BN04
+  usecase "BN-05 Xem hồ sơ bệnh nhân" as BN05
+  usecase "BN-06 Số hóa hồ sơ giấy cũ" as BN06
+
+  usecase "LH-01 Xem lịch & khung trống" as LH01
+  usecase "LH-02 Đặt lịch hẹn" as LH02
+  usecase "LH-03 Đổi lịch hẹn" as LH03
+  usecase "LH-04 Hủy lịch hẹn" as LH04
+  usecase "LH-05 Nhắc lịch hẹn" as LH05
+  usecase "LH-06 Gửi tin nhắn nhắc lịch" as LH06
+  usecase "LH-07 Kiểm tra xung đột lịch" as LH07
+  usecase "LH-08 Tiếp đón (check-in)" as LH08
+  usecase "LH-09 Tiếp nhận khách vãng lai" as LH09
+}
+
+LT --> BN01
+LT --> BN02
+LT --> BN04
+LT --> BN05
+LT --> BN06
+LT --> LH01
+LT --> LH02
+LT --> LH03
+LT --> LH04
+LT --> LH05
+LT --> LH08
+BS --> BN01
+BS --> BN05
+BS --> LH01
+BS --> LH02
+
+LH06 --> SMS
+LH06 --> BN
+
+BN03 ..> BN02 : <<extend>>\n(dưới 15 tuổi)
+LH02 ..> BN01 : <<include>>
+LH02 ..> LH07 : <<include>>
+LH03 ..> LH07 : <<include>>
+BN02 ..> LH02 : <<extend>>\n(khách mới)
+LH06 ..> LH05 : <<extend>>\n(không nghe máy)
+LH08 ..> BN01 : <<include>>
+LH09 ..> LH08 : <<extend>>\n(không có lịch)
+@enduml

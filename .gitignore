@@ -1,0 +1,21 @@
+# Bí mật — chỉ commit .env.example
+.env
+.env.*
+!.env.example
+
+# Phụ thuộc & build
+node_modules
+.next
+dist
+out
+*.tsbuildinfo
+
+# File tải lên của bệnh nhân (dữ liệu thật, không đưa lên git)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Cài đặt máy cá nhân
+.vscode/settings.json
+.claude/settings.local.json
+.DS_Store
+*.log

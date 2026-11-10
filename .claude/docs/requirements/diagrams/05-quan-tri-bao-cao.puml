@@ -1,0 +1,42 @@
+@startuml
+left to right direction
+actor "Quản lý" as QL
+actor "Bác sĩ" as BS
+
+rectangle "Quản trị" {
+  usecase "QT-01 Xếp ca trực bác sĩ" as QT01
+  usecase "QT-02 Quản lý bảng giá" as QT02
+  usecase "QT-03 Quản lý danh mục" as QT03
+  usecase "QT-04 Quản lý kho vật tư & thuốc" as QT04
+  usecase "QT-05 Quản lý tài khoản & phân quyền" as QT05
+}
+
+rectangle "Báo cáo" {
+  usecase "Xem báo cáo" as BC
+  usecase "BC-01 Doanh thu theo bác sĩ" as BC01
+  usecase "BC-02 Công suất ghế theo khung giờ" as BC02
+  usecase "BC-03 BN quá 6 tháng chưa quay lại" as BC03
+  usecase "BC-04 Thống kê hủy lịch" as BC04
+  usecase "BC-05 Công nợ theo bệnh nhân" as BC05
+  usecase "BC-06 Liệu trình đang dở" as BC06
+  usecase "BC-07 Vật tư / thuốc sắp hết" as BC07
+  usecase "BC-08 So sánh doanh thu tháng" as BC08
+}
+
+QL --> QT01
+QL --> QT02
+QL --> QT03
+QL --> QT04
+QL --> QT05
+QL --> BC
+BS --> BC06
+
+BC01 --|> BC
+BC02 --|> BC
+BC03 --|> BC
+BC04 --|> BC
+BC05 --|> BC
+BC06 --|> BC
+BC07 --|> BC
+BC08 --|> BC
+@enduml
